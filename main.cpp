@@ -3,6 +3,7 @@
 /*
  * Auther: Aman Arabzadeh
  * Exception Handling in C++
+ * Date: 2023-07-11
  *
  * Sources are used for further understanding of Exception Handling in C++.
  *
@@ -19,52 +20,9 @@
  *
  *
  */
+
 // Exception Handling C++
 
-/*
- * throw
- * try { code that may throw an exception }
- * catch(ExceptionType e) { code for handling exception e.what() }
- *
- * What is an Exception?
- * - An exception is an abnormal condition or error that occurs during the execution of a program.
- *   It can be caused by various factors, such as invalid input, resource unavailability, or unexpected behavior.
- *
- * What is Exception Handling?
- * - Exception handling is a mechanism in C++ that allows you to deal with exceptional conditions that may occur
- *   during the execution of a program. It provides a structured way to handle errors and exceptions by separating
- *   the error-handling code from the normal flow of control.
- *
- * What do we throw and catch?
- * - In C++, you can throw exceptions using the `throw` keyword followed by an expression or an object.
- *   Exceptions can be of any type, including built-in types, user-defined types, or objects derived from
- *   the `std::exception` class or its subclasses.
- * - Exceptions are caught using `try-catch` blocks. The `try` block contains the code that may throw an exception,
- *   and the `catch` block(s) handle the exception(s) if they occur. Each `catch` block specifies the type of
- *   exception it can handle.
- *
- * How does it affect the flow of control?
- * - When an exception is thrown, the normal flow of control is interrupted, and the program looks for a suitable
- *   `catch` block that can handle the thrown exception. If a matching `catch` block is found, the code within that
- *   block is executed. If no matching `catch` block is found, the program terminates and may display an error message.
- *
- * Defining our own exception classes.
- * - In C++, you can define your own exception classes by deriving them from the `std::exception` class or its subclasses.
- *   This allows you to create custom exception types with specific behaviors or additional data members to convey
- *   information about the exception.
- *
- * The Standard Library Exception Hierarchy.
- * - The C++ Standard Library provides a hierarchy of exception classes derived from `std::exception`.
- *   This hierarchy includes classes such as `std::runtime_error`, `std::logic_error`, and `std::invalid_argument`,
- *   among others. These classes provide common exception types for different categories of errors and can be used
- *   directly or as base classes for user-defined exceptions.
- *   (Note: The custom exception class `MyException` used in this example is derived from `std::exception`.)
- *
- * std::exception and wait()
- * - `std::exception` is the base class for all standard library exceptions. It provides a virtual member function `what()`
- *   that returns a C-style string describing the exception. Derived exception classes can override this function to provide
- *   custom exception messages.
- */
 
 // Here I give example on how to create your own exception class use by inheriting from base class std::exception class.
 // Custom exception class for demonstrating user-defined exceptions, inheriting from std::exception
@@ -114,15 +72,6 @@ double calculate_avg(int sum, int total) {
 
 // Exception Handling /  Stack Unwinding: C++
 
-/*
- * try { code that may throw an exception }
- * catch(ExceptionType e) { code for handling exception e.what() }
- *
- * Stack Unwinding:
- * - When an exception is thrown, the program unwinds the call stack, searching for an appropriate catch block.
- *   It means that the program jumps out of the current scope and looks for a matching catch block in the enclosing scopes.
- *   If a catch block is found, the corresponding code is executed. If not, the program terminates with an error message.
- */
 
 void thirdLevel() {
     std::cout << "Inside thirdLevel()" << std::endl;
@@ -158,41 +107,6 @@ void firstLevel() {
     std::cout << "Still inside firstLevel()" << std::endl; // this will execute because the exception was handled
 }
 
-
-
-/// BankAccount class
-/*
-The BankAccount class represents a bank account with the ability to deposit and withdraw money.
-Exception handling is implemented to handle scenarios such as invalid amounts and insufficient funds.
-
- Class Members:
-
-- balance: Represents the current balance of the bank account.
-
-Member Functions:
-- deposit(double amount): Deposits the specified amount into the account.
-    - Throws an std::invalid_argument exception if the deposit amount is invalid (less than or equal to zero).
-    - Updates the balance and prints a success message.
-
-- withdraw(double amount): Withdraws the specified amount from the account.
-        - Throws an std::invalid_argument exception if the withdrawal amount is invalid (less than or equal to zero).
-        - Throws an std::runtime_error exception if the withdrawal amount exceeds the available balance.
-        - Updates the balance and prints a success message.
-
-- getBalance(): Retrieves the current account balance.
-
-Exception Handling:
-    - The try block in the main function encloses the code that may throw exceptions.
-    - The catch blocks handle specific types of exceptions and display corresponding error messages using the e.what() function.
-    - The catch (...) block is a catch-all block that handles any other unknown exceptions.
-
-Program Flow:
-    - Create a BankAccount object.
-    - Perform deposit and withdrawal operations.
-    - Handle specific exceptions and display error messages.
-    - Output success messages for successful operations.
-
-*/
 
 
 // BankAccount class with exception handling
