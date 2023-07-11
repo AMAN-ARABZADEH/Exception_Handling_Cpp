@@ -202,9 +202,35 @@ This will compile and run the program, and display the output on the terminal.
 The output of this program is:
 
 ```
+
+Hello, World!                                       
+Caught custom exception: My Exception occurred!     
+                                                    
+                                                    
+                                                    
 Deposit successful. Current balance: 100            
 Withdrawal successful. Current balance: 50          
-Runtime error: Insufficient funds    
+Runtime error: Insufficient funds                   
+                                                    
+                                                    
+                                                    
+Exception occurred: Negative value exception        
+                                                    
+                                                    
+                                                    
+Inside main()                                       
+Inside firstLevel()                                 
+Inside secondLevel()                                
+Inside thirdLevel()                                 
+Caught exception: Exception occurred in thirdLevel()
+Still inside secondLevel()                          
+Still inside firstLevel()                           
+
+
+
+
+Process finished with exit code 0
+
 
 ```
 
