@@ -14,15 +14,26 @@ It can be caused by various factors, such as invalid input, resource unavailabil
 Exception handling is a mechanism in C++ that allows you to deal with exceptional conditions that may occur during the execution of a program. 
 It provides a structured way to handle errors and exceptions by separating the error-handling code from the normal flow of control.
 
-## How to use Exception Handling?
+## How to use Exception Handling using  try-catch blocks?
 In C++, you can use the following syntax for exception handling:
+To use try-catch blocks, you need to enclose the code that may throw an exception in a `try` block, and then provide one or more `catch` blocks to handle the possible exceptions. 
+Each `catch` block specifies the type of exception it can handle as a parameter. 
+For example, you can use try-catch blocks like this:
 
+```
 try {
-  // code that may throw an exception
+  // Some code that may throw an exception
 }
-catch (ExceptionType e) {
-  // code for handling exception e
+catch (std::invalid_argument& e) {
+  // Code for handling invalid argument exception
 }
+catch (std::runtime_error& e) {
+  // Code for handling runtime error exception
+}
+catch (...) {
+  // Code for handling any other unknown exception
+}
+```
 
 
 The `try` block contains the code that may throw an exception, and the `catch` block(s) handle the exception(s) if they occur. 
@@ -33,11 +44,18 @@ When an exception is thrown, the normal flow of control is interrupted, and the 
 If a matching `catch` block is found, the code within that block is executed. 
 If no matching `catch` block is found, the program terminates and may display an error message.
 
+
+The order of the `catch` blocks matters. The program will look for the first `catch` block that matches the type of the thrown exception. 
+If no matching `catch` block is found, the program will terminate with an error message. 
+Therefore, it is recommended to place the more specific exception types before the more general ones, and to use a catch-all block (`catch (...)`) at the end to handle any other unknown exceptions.
+
+
 How to throw Exceptions?
 In C++, you can throw exceptions using the `throw` keyword followed by an expression or an object. 
 Exceptions can be of any type, including built-in types, user-defined types, or objects derived from the `std::exception` class or its subclasses.
 
 For example, you can throw an integer exception like this:
+
 ```
 throw 42;
 ```
@@ -49,6 +67,8 @@ Or you can throw an object of a user-defined class like this:
 ```
 throw MyException("Custom message");
 ```
+
+
 
 ## How to define Custom Exceptions?
 In C++, you can define your own exception classes by deriving them from the std::exception class or its subclasses. 
@@ -100,6 +120,121 @@ For example, you can use the custom exception class defined above like this:
 
 ```
 
+
+## What is Stack Unwinding? 
+Stack Unwinding:
+- When an exception is thrown, the program unwinds the call stack, searching for an appropriate catch block.
+- It means that the program jumps out of the current scope and looks for a matching catch block in the enclosing scopes.
+- If a catch block is found, the corresponding code is executed. If not, the program terminates with an error message.
+
+
+For example, consider the following code:
+```
+void thirdLevel() {
+    std::cout << "Inside thirdLevel()" << std::endl;
+    throw std::runtime_error("Exception occurred in thirdLevel()");
+}
+
+void secondLevel() {
+    std::cout << "Inside secondLevel()" << std::endl;
+    thirdLevel();
+}
+
+void firstLevel() {
+    std::cout << "Inside firstLevel()" << std::endl;
+    secondLevel();
+}
+
+
+
+```
+
+
+##  BankAccount class
+
+The BankAccount class  with the ability to deposit and withdraw money. 
+Exception handling is implemented to handle scenarios such as invalid amounts and insufficient funds.
+
+
+## Class Members
+The BankAccount class has one private data member:
+- `balance`: Represents the current balance of the bank account.
+  
+## Member Functions
+The BankAccount class has three public member functions:
+
+- `deposit(double amount)`: Deposits the specified amount into the account.
+    - Throws an `std::invalid_argument` exception if the deposit amount is invalid (less than or equal to zero).
+    - Updates the balance and prints a success message.
+- `withdraw(double amount)`: Withdraws the specified amount from the account.
+    - Throws an `std::invalid_argument` exception if the withdrawal amount is invalid (less than or equal to zero).
+    - Throws an `std::runtime_error` exception if the withdrawal amount exceeds the available balance.
+    - Updates the balance and prints a success message.
+- `getBalance()`: Retrieves the current account balance.
+
+## Exception Handling
+The main function in the `main.cpp` file demonstrates how to use exception handling with the BankAccount class. It uses the following syntax:
+
+```
+    /// bank Account class.
+
+
+    BankAccount account;
+
+    try {
+        // Perform deposit and withdrawal operations
+        account.deposit(100.0);
+        account.withdraw(50.0);
+        account.withdraw(80.0); // This will throw an exception
+    } catch (const std::invalid_argument& e) {
+        // Catch invalid argument exceptions and display the error message
+        std::cout << "Invalid argument exception: " << e.what() << std::endl;
+    } catch (const std::runtime_error& e) {
+        // Catch runtime error exceptions and display the error message
+        std::cout << "Runtime error: " << e.what() << std::endl;
+    } catch (const std::exception& e) {
+        // Catch other standard exceptions and display the error message
+        std::cout << "Caught exception: " << e.what() << std::endl;
+    } catch (...) {
+        // Catch any other unknown exceptions
+        std::cout << "Caught unknown exception!" << std::endl;
+    }
+
+```
+The `try` block contains the code that may throw exceptions, such as calling the deposit and withdraw functions with invalid or insufficient amounts. The `catch` blocks handle specific types of exceptions and display corresponding error messages using the `e.what()` function. 
+The `catch (...)` block is a catch-all block that handles any other unknown exceptions.
+
+
+## How to Run
+To run this program, you need to have a C++ compiler installed on your system. You can use any IDE or command-line tool of your choice, CLion was used for creation of these example. For example, you can use g++ on Linux or Mac OS like this:
+
+```
+
+g++ main.cpp -o main
+./main
+
+```
+
+This will compile and run the program, and display the output on the terminal.
+
+## Output
+The output of this program is:
+
+```
+Deposit successful. Current balance: 100            
+Withdrawal successful. Current balance: 50          
+Runtime error: Insufficient funds    
+
+```
+
+
+As you can see, when we try to deposit or withdraw invalid amounts, an invalid argument exception is thrown with a corresponding message. 
+When we try to withdraw more money than we have in our account, a runtime error exception is thrown with the message “Insufficient funds”. 
+When we encounter any other unknown exception, we catch it using the catch-all block and print a generic message.
+
+
+
+
 ## The Standard Library Exception Hierarchy
 The C++ Standard Library provides a hierarchy of exception classes derived from std::exception. 
 This hierarchy includes classes such as std::runtime_error, std::logic_error, and std::invalid_argument, among others. 
@@ -119,5 +254,16 @@ The sources used for this codes are:
 - [Rollbar - C++ Custom Exceptions: How to Make and Use Them](https://rollbar.com/blog/cpp-custom-exceptions/)
 - [Stack Overflow - Creating custom exceptions in C++](https://stackoverflow.com/questions/41753358/creating-custom-exceptions-in-c)
 - [GeeksforGeeks - Exception Handling in C++](https://www.geeksforgeeks.org/exception-handling-c/)
+- [What is Stack Unwinding?](https://stackoverflow.com/questions/2331316/what-is-stack-unwinding)
 
+
+
+## How to Contribute
+
+This project is open source and free to use. 
+If you find it useful or interesting, feel free to clone the code and use it for your own purposes.
+You can also contribute to this project by submitting issues, suggestions, or pull requests on GitHub. 
+I appreciate any feedback or support that can help me improve this project. 
+
+Thank you for your interest and collaboration. 😊
 
