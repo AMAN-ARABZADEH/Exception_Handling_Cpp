@@ -4,8 +4,8 @@
  * Auther: Aman Arabzadeh
  * Exception Handling in C++
  *
- * Sources are used for further understanding and example codes.
- * Also the examples are taken from my own codes and cpp reference,
+ * Sources are used for further understanding of Exception Handling in C++.
+ *
  *
  * sources:
  *    - https://en.cppreference.com/w/cpp/error/exception
@@ -15,6 +15,7 @@
  *    - https://rollbar.com/blog/cpp-custom-exceptions/
  *    - https://stackoverflow.com/questions/41753358/creating-custom-exceptions-in-c
  *    - https://www.geeksforgeeks.org/exception-handling-c/
+ *    - https://stackoverflow.com/questions/2331316/what-is-stack-unwinding
  *
  *
  */
@@ -75,7 +76,8 @@
 class MyException : public std::exception {
 public:
     // Override the what() function to provide a custom exception message
-    // The const noexcept qualifiers indicate that the function is const and noexcept, meaning it won't modify the object's state and won't throw any exceptions.
+    // The const noexcept qualifiers indicate that the function is const and noexcept,
+    // meaning it won't modify the object's state and won't throw any exceptions.
     // As it is implemented in source code since 2011.
     const char* what() const noexcept override {
         return "My Exception occurred!";
@@ -83,6 +85,7 @@ public:
 };
 
 // Custom exception class for division by zero
+// Two classic example, you need to handle exceptions, and implement your own custom class for handling exceptions.
 class DivideByZeroException : public std::exception {
 public:
     const char* what() const noexcept override {
@@ -214,8 +217,15 @@ public:
     }
 };
 
+///
+
 int main() {
 
+    auto newLines = [](){
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << std::endl;
+    };
     try {
         std::cout << "Hello, World!" << std::endl;
         // Throw a custom exception to simulate an error condition
@@ -231,7 +241,7 @@ int main() {
         std::cout << "Caught unknown exception!" << std::endl;
     }
 
-
+    newLines();
     /// bank Account class.
 
 
@@ -256,7 +266,7 @@ int main() {
         std::cout << "Caught unknown exception!" << std::endl;
     }
 
-
+    newLines();
     // Example of exception handling in a function
     try {
         int sum = 100;
@@ -273,7 +283,7 @@ int main() {
     } catch (...) {
         std::cout << "Caught unknown exception!" << std::endl;
     }
-
+    newLines();
 // Example of  Stack Unwinding:
     try {
         std::cout << "Inside main()" << std::endl;
@@ -282,5 +292,6 @@ int main() {
         // Catch the exception and handle it
         std::cout << "Caught exception: " << e.what() << std::endl;
     }
+    newLines();
     return 0;
 }
