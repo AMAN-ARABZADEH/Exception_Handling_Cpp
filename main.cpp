@@ -123,20 +123,41 @@ double calculate_avg(int sum, int total) {
  *   It means that the program jumps out of the current scope and looks for a matching catch block in the enclosing scopes.
  *   If a catch block is found, the corresponding code is executed. If not, the program terminates with an error message.
  */
+
 void thirdLevel() {
     std::cout << "Inside thirdLevel()" << std::endl;
     throw std::runtime_error("Exception occurred in thirdLevel()");
+    std::cout << "Still inside thirdLevel()\n"; // Will not execute
 }
 
 void secondLevel() {
     std::cout << "Inside secondLevel()" << std::endl;
-    thirdLevel();
+    try {
+        thirdLevel();
+    }
+    catch (const std::runtime_error& e) { // catch the exception of type runtime_error
+        std::cout << "Caught exception: " << e.what() << std::endl;
+    }
+    catch (...) { // catch any other exception
+        std::cout << "Caught unknown exception" << std::endl;
+    }
+    std::cout << "Still inside secondLevel()" << std::endl;
 }
 
 void firstLevel() {
     std::cout << "Inside firstLevel()" << std::endl;
-    secondLevel();
+    try {
+        secondLevel();
+    }
+    catch (const std::runtime_error& e) { // catch the exception of type runtime_error
+        std::cout << "Caught exception: " << e.what() << std::endl;
+    }
+    catch (...) { // catch any other exception
+        std::cout << "Caught unknown exception" << std::endl;
+    }
+    std::cout << "Still inside firstLevel()" << std::endl;
 }
+
 
 
 /// BankAccount class
@@ -226,6 +247,7 @@ int main() {
         std::cout << std::endl;
         std::cout << std::endl;
     };
+    newLines();
     try {
         std::cout << "Hello, World!" << std::endl;
         // Throw a custom exception to simulate an error condition
