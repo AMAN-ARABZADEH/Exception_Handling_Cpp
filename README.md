@@ -113,12 +113,11 @@ You can find more information about these classes and their usage on [cppreferen
 
 ## Sources
 The sources used for this codes are:
-
-[cppreference.com - std::exception](https://en.cppreference.com/w/cpp/error/exception)
-[cppreference.com - std::exception::what](https://en.cppreference.com/w/cpp/error/exception/what)
-[cppreference.com - std::runtime_error](https://en.cppreference.com/w/cpp/error/runtime_error)
-[Rollbar - C++ Custom Exceptions: How to Make and Use Them](https://rollbar.com/blog/cpp-custom-exceptions/)
-[Stack Overflow - Creating custom exceptions in C++](https://stackoverflow.com/questions/41753358/creating-custom-exceptions-in-c)
-[GeeksforGeeks - Exception Handling in C++](https://www.geeksforgeeks.org/exception-handling-c/)
+- [cppreference.com - std::exception](https://en.cppreference.com/w/cpp/error/exception)
+- [cppreference.com - std::exception::what](https://en.cppreference.com/w/cpp/error/exception/what)
+- [cppreference.com - std::runtime_error](https://en.cppreference.com/w/cpp/error/runtime_error)
+- [Rollbar - C++ Custom Exceptions: How to Make and Use Them](https://rollbar.com/blog/cpp-custom-exceptions/)
+- [Stack Overflow - Creating custom exceptions in C++](https://stackoverflow.com/questions/41753358/creating-custom-exceptions-in-c)
+- [GeeksforGeeks - Exception Handling in C++](https://www.geeksforgeeks.org/exception-handling-c/)
 
 
