@@ -128,26 +128,7 @@ Stack Unwinding:
 - If a catch block is found, the corresponding code is executed. If not, the program terminates with an error message.
 
 
-For example, consider the following code:
-```
-void thirdLevel() {
-    std::cout << "Inside thirdLevel()" << std::endl;
-    throw std::runtime_error("Exception occurred in thirdLevel()");
-}
-
-void secondLevel() {
-    std::cout << "Inside secondLevel()" << std::endl;
-    thirdLevel();
-}
-
-void firstLevel() {
-    std::cout << "Inside firstLevel()" << std::endl;
-    secondLevel();
-}
-
-
-
-```
+Examples of `Stack Unwinding` can be found inside main.cpp
 
 
 ##  BankAccount class
@@ -221,9 +202,35 @@ This will compile and run the program, and display the output on the terminal.
 The output of this program is:
 
 ```
+
+Hello, World!                                       
+Caught custom exception: My Exception occurred!     
+                                                    
+                                                    
+                                                    
 Deposit successful. Current balance: 100            
 Withdrawal successful. Current balance: 50          
-Runtime error: Insufficient funds    
+Runtime error: Insufficient funds                   
+                                                    
+                                                    
+                                                    
+Exception occurred: Negative value exception        
+                                                    
+                                                    
+                                                    
+Inside main()                                       
+Inside firstLevel()                                 
+Inside secondLevel()                                
+Inside thirdLevel()                                 
+Caught exception: Exception occurred in thirdLevel()
+Still inside secondLevel()                          
+Still inside firstLevel()                           
+
+
+
+
+Process finished with exit code 0
+
 
 ```
 
@@ -243,6 +250,8 @@ These classes provide common exception types for different categories of errors 
 The following diagram shows some of the standard library exception classes and their relationships:
 
 ![The Standard Library Exception Hierarchy](https://github.com/AMAN-ARABZADEH/Exception_Handling_Cpp/blob/main/Exception_flow.png)
+Source of the img: [Exception hierarchy C++](https://www.javatpoint.com/cpp-exception-handling)
+
 
 You can find more information about these classes and their usage on [cppreference.com](https://en.cppreference.com/w/cpp/error/exception).
 
