@@ -4,8 +4,8 @@
  * Auther: Aman Arabzadeh
  * Exception Handling in C++
  *
- * Sources are used for forther understanding and example codes.
- * Also the examples are taken from my own codes and cppreference,
+ * Sources are used for further understanding and example codes.
+ * Also the examples are taken from my own codes and cpp reference,
  *
  * sources:
  *    - https://en.cppreference.com/w/cpp/error/exception
@@ -14,6 +14,7 @@
  *    - https://en.cppreference.com/w/cpp/error/runtime_error
  *    - https://rollbar.com/blog/cpp-custom-exceptions/
  *    - https://stackoverflow.com/questions/41753358/creating-custom-exceptions-in-c
+ *    - https://www.geeksforgeeks.org/exception-handling-c/
  *
  *
  */
@@ -75,6 +76,7 @@ class MyException : public std::exception {
 public:
     // Override the what() function to provide a custom exception message
     // The const noexcept qualifiers indicate that the function is const and noexcept, meaning it won't modify the object's state and won't throw any exceptions.
+    // As it is implemented in source code since 2011.
     const char* what() const noexcept override {
         return "My Exception occurred!";
     }
