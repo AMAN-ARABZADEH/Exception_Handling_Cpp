@@ -128,26 +128,7 @@ Stack Unwinding:
 - If a catch block is found, the corresponding code is executed. If not, the program terminates with an error message.
 
 
-For example, consider the following code:
-```
-void thirdLevel() {
-    std::cout << "Inside thirdLevel()" << std::endl;
-    throw std::runtime_error("Exception occurred in thirdLevel()");
-}
-
-void secondLevel() {
-    std::cout << "Inside secondLevel()" << std::endl;
-    thirdLevel();
-}
-
-void firstLevel() {
-    std::cout << "Inside firstLevel()" << std::endl;
-    secondLevel();
-}
-
-
-
-```
+Examples of `Stack Unwinding` can be found inside main.cpp
 
 
 ##  BankAccount class
