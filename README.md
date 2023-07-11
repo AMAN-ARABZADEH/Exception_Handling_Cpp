@@ -265,7 +265,9 @@ The sources used for this codes are:
 - [GeeksforGeeks - Exception Handling in C++](https://www.geeksforgeeks.org/exception-handling-c/)
 - [What is Stack Unwinding?](https://stackoverflow.com/questions/2331316/what-is-stack-unwinding)
 
+## License
 
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
 ## How to Contribute
 
