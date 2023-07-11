@@ -126,36 +126,36 @@ double calculate_avg(int sum, int total) {
 
 void thirdLevel() {
     std::cout << "Inside thirdLevel()" << std::endl;
-    throw std::runtime_error("Exception occurred in thirdLevel()");
-    std::cout << "Still inside thirdLevel()\n"; // Will not execute
+    throw std::runtime_error("Exception occurred in thirdLevel()"); // throw an exception of type runtime_error
+    std::cout << "Still inside thirdLevel()\n"; // Will not execute because of the exception
 }
 
 void secondLevel() {
     std::cout << "Inside secondLevel()" << std::endl;
     try {
-        thirdLevel();
+        thirdLevel(); // call the thirdLevel() function
     }
     catch (const std::runtime_error& e) { // catch the exception of type runtime_error
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << e.what() << std::endl; // print the error message
     }
     catch (...) { // catch any other exception
-        std::cout << "Caught unknown exception" << std::endl;
+        std::cout << "Caught unknown exception" << std::endl; // print a generic message
     }
-    std::cout << "Still inside secondLevel()" << std::endl;
+    std::cout << "Still inside secondLevel()" << std::endl; // this will execute because the exception was handled
 }
 
 void firstLevel() {
     std::cout << "Inside firstLevel()" << std::endl;
     try {
-        secondLevel();
+        secondLevel(); // call the secondLevel() function
     }
     catch (const std::runtime_error& e) { // catch the exception of type runtime_error
-        std::cout << "Caught exception: " << e.what() << std::endl;
+        std::cout << "Caught exception: " << e.what() << std::endl; // print the error message
     }
     catch (...) { // catch any other exception
-        std::cout << "Caught unknown exception" << std::endl;
+        std::cout << "Caught unknown exception" << std::endl; // print a generic message
     }
-    std::cout << "Still inside firstLevel()" << std::endl;
+    std::cout << "Still inside firstLevel()" << std::endl; // this will execute because the exception was handled
 }
 
 
